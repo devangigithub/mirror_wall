@@ -24,15 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
       Provider.of<InternetProvider>(context, listen: false)
           .changeConnectionStatus(noInternet);
       if (noInternet) {
-        showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(msg),
-              ),
-            );;
-          },
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("No Internet Connection"),
+            duration: Duration(seconds: 3),
+          ),
         );
       }
     });
@@ -43,14 +39,20 @@ class _HomeScreenState extends State<HomeScreen> {
     final String? username = ModalRoute.of(context)?.settings.arguments as String?;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Gov.Service App'),
+        backgroundColor: Colors.white,
+        title: const Text('Mirror Wall',style: TextStyle(
+          fontSize: 27
+        ),),
         centerTitle: true,
         actions: [
-          const SizedBox(height: 20),
-          Text(
-            username ?? "Guest",
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.only(left: 20,right: 20),
+            child: Text(
+              username ?? "Guest",
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
@@ -60,17 +62,17 @@ class _HomeScreenState extends State<HomeScreen> {
             type: BottomNavigationBarType.fixed,
             currentIndex: value.menuIndex,
             backgroundColor: Colors.white,
-            fixedColor: Colors.blue,
+            fixedColor: Colors.black,
             onTap: (index) {
               value.pageController.animateToPage(
                 index,
-                duration: Duration(milliseconds: 1000),
+                duration: const Duration(milliseconds: 1000),
                 curve: Curves.ease,
               );
             },
             items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home_work_outlined), label: 'Contacts'),
-              BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Recent'),
+              BottomNavigationBarItem(icon: Icon(Icons.home_work_outlined), label: 'Government Service'),
+              BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search Engine'),
             ],
           );
         },
@@ -82,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         children: [
           AppViwe(),
-          MyApp(),
+          SearchPage(),
         ],
       ),
     );

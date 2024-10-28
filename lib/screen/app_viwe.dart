@@ -24,18 +24,19 @@ class _AppViweState extends State<AppViwe> {
               Navigator.pushNamed(context, 'detail_screen', arguments: allData[index]['url']);
             },
             child: Card(
-              child: Container(
-                child: Column(
-                  children: [
-                    Text(allData[index]['title'],
-                      style: TextStyle(
-                        fontSize: 22,
-                      ),
+              child: Stack(
+                children:[
+                  Container(
+                  child:Image.asset(allData[index]['logo'],
+                    fit: BoxFit.cover,
+                    height: double.infinity,
+                    width: double.infinity,
+                  ),
 
-                      textAlign: TextAlign.center,),
 
-                  ],
                 ),
+
+          ],
               ),
             ),
           ),

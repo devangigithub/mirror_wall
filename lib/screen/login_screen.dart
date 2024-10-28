@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                 ),
                 onPressed: () {
